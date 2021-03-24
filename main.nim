@@ -21,13 +21,11 @@ while run:
     echo "Please enter a (valid) number!"
     quit()
 
-var player = Player(name: "JohnDoe", healthpoints: 100, npc: false)
 
 discard execCmd "clear"
 
 echo "Enter a name:\n"
 var name = readLine(stdin)
+var player = Player(name: name, healthpoints: 100, npc: false)
 
-echo "Name: ", player.name
-echo "HP: ", player.healthpoints
-echo "NPC: ", player.npc
+player.printInfo()

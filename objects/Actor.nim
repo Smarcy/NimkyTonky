@@ -1,6 +1,10 @@
-type Actor = ref object of RootObj
-  name*: string
-  healthpoints*: int
+type
+  Actor = ref object of RootObj
+    name*: string
+    healthpoints*: int
 
-type Player = ref object of Actor
-  npc: bool
+  Player = ref object of Actor
+    npc: bool
+
+method printInfo(this: Player) =
+  echo "Name: "
