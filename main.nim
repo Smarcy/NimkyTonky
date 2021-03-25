@@ -28,6 +28,13 @@ discard execCmd "clear"
 
 echo "Enter a name:\n"
 var name = readLine(stdin)
-var player = Player(name: name, healthpoints: 100, npc: false)
+var player = Player(
+  name: name,
+  healthpoints: 100,
+  manapoints: 15,
+  level: 1,
+  experience: 30,
+  damage: 1,
+  armor: 0)
 
 player.printInfo()
