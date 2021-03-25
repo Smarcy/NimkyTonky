@@ -1,5 +1,7 @@
+## This is the main module
+
 import osproc
-include objects/Actor
+import objects/Actor
 from strutils import parseInt
 
 discard execCmd "clear" # clear screen (outsource later on maybe?)
