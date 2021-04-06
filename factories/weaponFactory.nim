@@ -3,7 +3,8 @@ import ../objects/Item
 
 var weapons {.global.}: seq[Weapon]
 
-let shortsword = Item.Weapon(name: "Shortsword", value: 10, damage: 2)
+let shortsword = Item.Weapon(name: "Shortsword", value: 10, damage: 2,
+    weaponType: WeaponType.oneHandSword)
 
 proc createWeapons*() =
   weapons.add(shortsword)

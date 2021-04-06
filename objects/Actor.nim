@@ -1,7 +1,9 @@
 ## This module contains all Actors
 
 import math
+import terminal
 import ../misc/exptable
+import ../misc/misc
 import ../objects/Item
 
 type
@@ -21,7 +23,8 @@ type
 proc calcExpPercentage(self: Player): float =
   result = float(self.experience / exptable.table[0]) * 100
 
-method printInfo*(self: Player) {.base.} =
+proc printInfo*(self: Player) =
+  setForegroundColor(stdout, fgBlue)
   echo "Name:   ", self.name
   echo "HP:     ", self.healthpoints
   echo "MP:     ", self.manapoints
@@ -29,3 +32,7 @@ method printInfo*(self: Player) {.base.} =
   echo "XP:     ", self.experience
   echo "Weapon: ", self.weapon.name
   echo "Armor:  ", self.armor.name
+  resetColor()
+
+proc move*(self: Player) =
+  discard nil

@@ -4,7 +4,8 @@ import ../objects/Item
 
 var armors: seq[Armor]
 
-let ironArmor = Item.Armor(name: "Iron Armor", value: 10, armor: 2)
+let ironArmor = Item.Armor(name: "Iron Armor", value: 10, armor: 2,
+    armorType: ArmorType.iron)
 
 proc createArmors*() =
   armors.add(ironArmor)
