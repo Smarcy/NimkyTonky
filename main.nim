@@ -3,15 +3,16 @@
 import misc/misc
 import objects/Actor
 from factories/weaponFactory as wepFac import createWeapons
-import factories/armorFactory
+from factories/armorFactory as armorFac import createArmors
 from strutils import parseInt
+import terminal
 
 var run = true
 
 # Intro Menu Loop
 while run:
   wepFac.createWeapons()
-  armorFactory.createArmors()
+  armorFac.createArmors()
   clearScreen()
 
   echo """Welcome to NimkyTonky!
@@ -20,7 +21,6 @@ while run:
     [2] Quit"""
 
   var option: int
-
   try:
     option = parseInt(readLine(stdin))
   except ValueError:
@@ -40,13 +40,13 @@ clearScreen()
 
 # Player creation
 echo "Enter a name:\n"
-var player = Player(
+let player = Player(
   name: readLine(stdin),
   healthpoints: 100,
   manapoints: 15,
   level: 1,
   experience: 30,
   weapon: wepFac.findWeaponByName("Shortsword"),
-  armor: armorFactory.findArmorByName("Iron Armor"))
+  armor: armorFac.findArmorByName("Iron Armor"))
 
 player.printInfo()
