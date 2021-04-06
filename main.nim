@@ -1,14 +1,19 @@
 ## This is the main module
 
-import osproc
+import misc/misc
 import objects/Actor
+from factories/weaponFactory as wepFac import createWeapons
+import factories/armorFactory
 from strutils import parseInt
-
-discard execCmd "clear" # clear screen (outsource later on maybe?)
 
 var run = true
 
+# Intro Menu Loop
 while run:
+  wepFac.createWeapons()
+  armorFactory.createArmors()
+  clearScreen()
+
   echo """Welcome to NimkyTonky!
 
     [1] New Game
@@ -18,23 +23,30 @@ while run:
 
   try:
     option = parseInt(readLine(stdin))
-    run = false
   except ValueError:
     echo "Please enter a (valid) number!"
-    quit()
+    discard readLine(stdin)
 
+  case option:
+    of 1:
+      run = false
+      break
+    of 2:
+      quit()
+    else:
+      continue
 
-discard execCmd "clear"
+clearScreen()
 
+# Player creation
 echo "Enter a name:\n"
-var name = readLine(stdin)
 var player = Player(
-  name: name,
+  name: readLine(stdin),
   healthpoints: 100,
   manapoints: 15,
   level: 1,
   experience: 30,
-  damage: 1,
-  armor: 0)
+  weapon: wepFac.findWeaponByName("Shortsword"),
+  armor: armorFactory.findArmorByName("Iron Armor"))
 
 player.printInfo()
