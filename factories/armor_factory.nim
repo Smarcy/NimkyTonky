@@ -1,10 +1,10 @@
 ## This module creates all the Armors in the game
 
-import ../objects/Item
+import ../objects/item
 
 var armors: seq[Armor]
 
-let ironArmor = Item.Armor(name: "Iron Armor", value: 10, armor: 2,
+let ironArmor = item.Armor(name: "Iron Armor", value: 10, armor: 2,
     armorType: ArmorType.iron)
 
 proc createArmors*() =

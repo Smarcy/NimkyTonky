@@ -1,11 +1,11 @@
 ## This is the main module
 
 import misc/misc
-import objects/Actor
-from factories/weaponFactory as wepFac import createWeapons
-from factories/armorFactory as armorFac import createArmors
+import objects/actor
+from factories/weapon_factory as wepFac import createWeapons
+from factories/armor_factory as armorFac import createArmors
+from factories/room_factory as roomFac import createRooms
 from strutils import parseInt
-import terminal
 
 var runIntro = true
 
@@ -13,6 +13,7 @@ var runIntro = true
 while runIntro:
   wepFac.createWeapons()
   armorFac.createArmors()
+  roomFac.createRooms()
   clearScreen()
 
   echo """Welcome to NimkyTonky!
@@ -47,9 +48,10 @@ let player = Player(
   level: 1,
   experience: 0,
   weapon: wepFac.findWeaponByName("Shortsword"),
-  armor: armorFac.findArmorByName("Iron Armor"))
+  armor: armorFac.findArmorByName("Iron Armor"),
+  currentRoom: roomFac.findRoomByName("Living Room"))
 
-# Game Loop
+  # Game Loop
 var runGame = true
 while runGame:
   clearScreen()

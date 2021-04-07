@@ -2,17 +2,18 @@
 
 import math
 import terminal
-import ../misc/exptable
-import ../misc/misc
-import ../objects/Item
+import ../misc / [exptable, misc]
+import item
+import room
 
 type
   Actor = ref object of RootObj
     name*: string
     healthpoints*: int
     manapoints*: int
-    armor*: Item.Armor
-    weapon*: Item.Weapon
+    armor*: item.Armor
+    weapon*: item.Weapon
+    currentRoom*: room.Room
     level*: int
     experience*: int
 
@@ -25,13 +26,14 @@ proc calcExpPercentage(self: Player): float =
 
 proc printInfo*(self: Player) =
   setForegroundColor(stdout, fgBlue)
-  echo "Name:   ", self.name
-  echo "HP:     ", self.healthpoints
-  echo "MP:     ", self.manapoints
-  echo "Level:  ", self.level, " (", round(calcExpPercentage(self), 2), "%)"
-  echo "XP:     ", self.experience
-  echo "Weapon: ", self.weapon.name
-  echo "Armor:  ", self.armor.name
+  echo "Name:     ", self.name
+  echo "HP:       ", self.healthpoints
+  echo "MP:       ", self.manapoints
+  echo "Level:    ", self.level, " (", round(calcExpPercentage(self), 2), "%)"
+  echo "XP:       ", self.experience
+  echo "Location: ", self.currentRoom.name
+  echo "Weapon:   ", self.weapon.name
+  echo "Armor:    ", self.armor.name
   resetColor()
 
 proc move*(self: Player) =

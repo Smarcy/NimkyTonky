@@ -1,9 +1,11 @@
 ## This module creates all the Weapons in the game
-import ../objects/Item
 
+import ../objects/item
+
+# global pragma could be superflous?
 var weapons {.global.}: seq[Weapon]
 
-let shortsword = Item.Weapon(name: "Shortsword", value: 10, damage: 2,
+let shortsword = item.Weapon(name: "Shortsword", value: 10, damage: 2,
     weaponType: WeaponType.oneHandSword)
 
 proc createWeapons*() =
