@@ -5,15 +5,24 @@ import objects/actor
 from factories/weapon_factory as wepFac import createWeapons
 from factories/armor_factory as armorFac import createArmors
 from factories/room_factory as roomFac import createRooms
+from factories/door_factory as doorFac import createDoors
 from strutils import parseInt
+
+# Init World
+wepFac.createWeapons()
+armorFac.createArmors()
+roomFac.createRooms()
+doorFac.createDoors()
+
+# Set Starting Gear
+let startingRoom = roomFac.findRoomByName("Living Room")
+let startingWeapon = wepFac.findWeaponByName("Shortsword")
+let startingArmor = armorFac.findArmorByName("Iron Armor")
 
 var runIntro = true
 
 # Intro Menu Loop
 while runIntro:
-  wepFac.createWeapons()
-  armorFac.createArmors()
-  roomFac.createRooms()
   clearScreen()
 
   echo """Welcome to NimkyTonky!
@@ -47,9 +56,9 @@ let player = Player(
   manapoints: 15,
   level: 1,
   experience: 0,
-  weapon: wepFac.findWeaponByName("Shortsword"),
-  armor: armorFac.findArmorByName("Iron Armor"),
-  currentRoom: roomFac.findRoomByName("Living Room"))
+  weapon: startingWeapon,
+  armor: startingArmor,
+  currentRoom: startingRoom)
 
   # Game Loop
 var runGame = true
