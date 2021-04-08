@@ -10,9 +10,12 @@ let livingRoom = Room(name: "Living Room", hasMonster: false,
 
 let hall = Room(name: "Hall", hasMonster: false, hasMerchant: false)
 
+let storage = Room(name: "Storage", hasMonster: true, hasMerchant: false)
+
 proc createRooms*() =
   rooms.add(livingRoom)
   rooms.add(hall)
+  rooms.add(storage)
 
 # May return nil(?) if nothing was found
 proc findRoomByName*(name: string): Room =

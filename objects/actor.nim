@@ -5,6 +5,9 @@ import terminal
 import ../misc / [exptable, misc]
 import item
 import room
+import door
+from strformat import fmt
+from strutils import parseInt
 
 type
   Actor = ref object of RootObj
@@ -36,5 +39,20 @@ proc printInfo*(self: Player) =
   echo "Armor:    ", self.armor.name
   resetColor()
 
-proc move*(self: Player) =
-  discard nil
+## List all available Doors from player.currentRoom
+# TODO: make _doors_ global/static or something so it does not need to be an argument
+proc move*(self: Player, allDoors: seq[Door]) =
+  clearScreen()
+
+  var i = 1 # To count and output correct numeric option values. Start with 1 for User Experience
+  for d in allDoors:
+    if d.sourceRoom.name == self.currentRoom.name:
+      echo fmt"[{i}] {d.targetRoom.name}"
+      i += 1
+
+  let option = parseInt(readLine(stdin)) # Contains the users choice as string
+  try:
+    self.currentRoom = allDoors[option - 1].targetRoom
+  except ValueError:
+    echo "Please make a valid choice!"
+    discard readLine(stdin)
