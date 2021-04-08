@@ -8,7 +8,7 @@ from factories/room_factory as roomFac import createRooms
 from factories/door_factory as doorFac import createDoors
 from strutils import parseInt
 
-# Init World
+# Init World ||| Use include maybe?
 wepFac.createWeapons()
 armorFac.createArmors()
 roomFac.createRooms()
@@ -73,18 +73,18 @@ while runGame:
   [3] Quit
   """
 
-  var option: int
+  let option = parseInt(readLine(stdin))
   try:
-    option = parseInt(readLine(stdin))
+    case option:
+      of 1: player.move(door_fac.doors)
+      of 2:
+        clearScreen()
+        player.printInfo()
+        discard readLine(stdin)
+      of 3: quit()
+      else: continue
   except ValueError:
     echo "Please enter a (valid) number!"
     discard readLine(stdin)
+    continue
 
-  case option:
-    of 1: player.move()
-    of 2:
-      clearScreen()
-      player.printInfo()
-      discard readLine(stdin)
-    of 3: quit()
-    else: continue
