@@ -50,8 +50,9 @@ proc move*(self: Player, allDoors: seq[Door]) =
       echo fmt"[{i}] {d.targetRoom.name}"
       i += 1
 
-  let option = parseInt(readLine(stdin)) # Contains the users choice as string
+  var option: int
   try:
+    option = parseInt(readLine(stdin)) # Contains the users choice as string
     self.currentRoom = allDoors[option - 1].targetRoom
   except ValueError:
     echo "Please make a valid choice!"

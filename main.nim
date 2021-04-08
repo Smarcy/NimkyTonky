@@ -73,8 +73,9 @@ while runGame:
   [3] Quit
   """
 
-  let option = parseInt(readLine(stdin))
+  var option: int
   try:
+    option = parseInt(readLine(stdin))
     case option:
       of 1: player.move(door_fac.doors)
       of 2:
@@ -86,5 +87,4 @@ while runGame:
   except ValueError:
     echo "Please enter a (valid) number!"
     discard readLine(stdin)
-    continue
 
