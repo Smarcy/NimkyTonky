@@ -6,6 +6,7 @@ import ../misc / [exptable, misc]
 import item
 import room
 import door
+import ../factories/door_factory
 from strformat import fmt
 from strutils import parseInt
 
@@ -40,10 +41,12 @@ proc printInfo*(self: Player) =
   resetColor()
 
 ## List all available Doors in player.currentRoom
-# TODO: make _doors_ global/static or singleton or something so it does not
-#       need to be an argument
-proc move*(self: Player, allDoors: seq[Door]) =
+# TODO: Refactor this so it always starts with 1 and not the position
+# in the doors seq
+proc move*(self: Player) =
   clearScreen()
+
+  let allDoors = door_factory.getInstance().doors
 
   # i is a counter, d is a Door (<counter, item>,<iterator> in range)-syntax
   for i, d in allDoors:
@@ -55,9 +58,8 @@ proc move*(self: Player, allDoors: seq[Door]) =
       else:
         echo fmt"[{i+1}] {d.targetRoom.name}"
 
-  var option: int
   try:
-    option = parseInt(readLine(stdin)) # Contains the users choice as string
+    let option = parseInt(readLine(stdin)) # Contains the users choice as string
     self.currentRoom = allDoors[option - 1].targetRoom
   except ValueError:
     echo "Please make a valid choice!"

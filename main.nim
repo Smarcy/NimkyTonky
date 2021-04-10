@@ -74,7 +74,7 @@ while runGame:
   try:
     option = parseInt(readLine(stdin))
     case option:
-      of 1: player.move(doorFac.getInstance().doors)
+      of 1: player.move()
       of 2:
         clearScreen()
         player.printInfo()
