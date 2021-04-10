@@ -60,7 +60,7 @@ let player = Player(
   armor: startingArmor,
   currentRoom: startingRoom)
 
-  # Game Loop
+# Game Loop
 var runGame = true
 while runGame:
   clearScreen()
@@ -77,7 +77,7 @@ while runGame:
   try:
     option = parseInt(readLine(stdin))
     case option:
-      of 1: player.move(door_fac.doors)
+      of 1: player.move(doorFac.getInstance().doors)
       of 2:
         clearScreen()
         player.printInfo()

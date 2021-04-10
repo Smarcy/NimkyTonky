@@ -1,18 +1,30 @@
 ## This module creates all the Doors in the game
+## Written in Singleton Design Pattern accessible by getInstance()
 
 import ../objects/door
-import room_factory
+import room_factory as roomFac
 
-var doors* {.global.}: seq[Door]
+type door_factory = object
+  doors*: seq[Door]
 
-room_factory.createRooms()
+var instance = door_factory()
 
-let livingToHall = Door(name: "LivingToHall", sourceRoom: room_factory.rooms[0],
-    targetRoom: room_factory.rooms[1])
-
-let livingToStorage = Door(name: "LivingToStorage",
-    sourceRoom: room_factory.rooms[0], targetRoom: room_factory.rooms[2])
+proc getInstance*(): door_factory =
+  return instance
 
 proc createDoors*() =
-  doors.add(livingToHall)
-  doors.add(livingToStorage)
+
+  # Create Doors (TODO: outsource to a file or something)
+  let livingToHall = Door(name: "LivingToHall",
+    sourceRoom: roomFac.getInstance().rooms[0],
+    targetRoom: roomFac.getInstance().rooms[1], locked: false)
+  let livingToStorage = Door(name: "LivingToStorage",
+    sourceRoom: roomFac.getInstance().rooms[0],
+      targetRoom: roomFac.getInstance().rooms[2], locked: true)
+  let hallToLiving = Door(name: "hallToLiving",
+    sourceRoom: roomFac.getInstance().rooms[1],
+      targetRoom: roomFac.getInstance().rooms[0], locked: false)
+
+  instance.doors.add(livingToHall)
+  instance.doors.add(livingToStorage)
+  instance.doors.add(hallToLiving)

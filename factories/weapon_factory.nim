@@ -2,17 +2,22 @@
 
 import ../objects/item
 
-# global pragma could be superflous?
-var weapons {.global.}: seq[Weapon]
+type weapon_factory = object
+  weapons: seq[Weapon]
+
+var instance = weapon_factory()
+
+proc getInstance*(): weapon_factory =
+  return instance # we can leave out the 'return' but I like it actually
 
 let shortsword = item.Weapon(name: "Shortsword", value: 10, damage: 2,
     weaponType: WeaponType.oneHandSword)
 
 proc createWeapons*() =
-  weapons.add(shortsword)
+  instance.weapons.add(shortsword)
 
 # May return nil if no match was found
 proc findWeaponByName*(name: string): Weapon =
-  for wep in weapons:
+  for wep in instance.weapons:
     if wep.name == name:
       result = wep

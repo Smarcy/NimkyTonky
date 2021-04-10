@@ -39,16 +39,21 @@ proc printInfo*(self: Player) =
   echo "Armor:    ", self.armor.name
   resetColor()
 
-## List all available Doors from player.currentRoom
-# TODO: make _doors_ global/static or something so it does not need to be an argument
+## List all available Doors in player.currentRoom
+# TODO: make _doors_ global/static or singleton or something so it does not
+#       need to be an argument
 proc move*(self: Player, allDoors: seq[Door]) =
   clearScreen()
 
-  var i = 1 # To count and output correct numeric option values. Start with 1 for User Experience
-  for d in allDoors:
+  # i is a counter, d is a Door (<counter, item>,<iterator> in range)-syntax
+  for i, d in allDoors:
+    # Found a Door!
     if d.sourceRoom.name == self.currentRoom.name:
-      echo fmt"[{i}] {d.targetRoom.name}"
-      i += 1
+      # Add a "(locked)" suffix if a Door is locked
+      if d.isLocked:
+        echo fmt"[{i+1}] {d.targetRoom.name} (locked)"
+      else:
+        echo fmt"[{i+1}] {d.targetRoom.name}"
 
   var option: int
   try:
@@ -57,3 +62,5 @@ proc move*(self: Player, allDoors: seq[Door]) =
   except ValueError:
     echo "Please make a valid choice!"
     discard readLine(stdin)
+
+  # TODO: check Room for Monster and Merchant

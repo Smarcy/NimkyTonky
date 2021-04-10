@@ -7,7 +7,7 @@ type
     name*: string
     sourceRoom*: room.Room
     targetRoom*: room.Room
-    locked: bool
+    locked*: bool
 
-proc isLocked(self: Door): bool =
+proc isLocked*(self: Door): bool =
   self.locked

@@ -10,6 +10,7 @@ let ironArmor = item.Armor(name: "Iron Armor", value: 10, armor: 2,
 proc createArmors*() =
   armors.add(ironArmor)
 
+## May return nil if no match was found
 proc findArmorByName*(name: string): Armor =
   for armor in armors:
     if armor.name == name:
