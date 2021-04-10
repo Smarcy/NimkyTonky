@@ -1,0 +1,5 @@
+# Init World for main.nim (included)
+wepFac.createWeapons()
+armorFac.createArmors()
+roomFac.createRooms()
+doorFac.createDoors()

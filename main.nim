@@ -8,11 +8,8 @@ from factories/room_factory as roomFac import createRooms
 from factories/door_factory as doorFac import createDoors
 from strutils import parseInt
 
-# Init World ||| Use include maybe?
-wepFac.createWeapons()
-armorFac.createArmors()
-roomFac.createRooms()
-doorFac.createDoors()
+# Build the world - Create Rooms, Doors, Items, ...
+include factories/world_factory
 
 # Set Starting Gear
 let startingRoom = roomFac.findRoomByName("Living Room")
