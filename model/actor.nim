@@ -39,6 +39,8 @@ proc printInfo*(self: Player) =
   echo "Weapon:   ", self.weapon.name
   echo "Armor:    ", self.armor.name
   resetColor()
+  echo ""
+  echo "Press any key..."
 
 ## List all available Doors in player.currentRoom
 # TODO: Refactor this so it always starts with 1 and not the position

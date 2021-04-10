@@ -1,7 +1,7 @@
 ## This module creates all the Armors in the game
 ## Written in Singleton Design Pattern accessible by getInstance()
 
-import ../objects/item
+import ../model/item
 
 type armor_factory = object
   armors*: seq[Armor]

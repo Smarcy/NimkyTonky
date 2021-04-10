@@ -1,7 +1,7 @@
 ## This module creates all the Rooms in the game
 ## Written in Singleton Design Pattern accessible by getInstance()
 
-import ../objects/room
+import ../model/room
 
 type room_factory = object
   rooms*: seq[Room]

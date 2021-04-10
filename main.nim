@@ -1,7 +1,7 @@
 ## This is the main module
 
 import misc/misc
-import objects/actor
+import model/actor
 from factories/weapon_factory as wepFac import createWeapons
 from factories/armor_factory as armorFac import createArmors
 from factories/room_factory as roomFac import createRooms

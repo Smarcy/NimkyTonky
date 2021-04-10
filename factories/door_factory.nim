@@ -1,7 +1,7 @@
 ## This module creates all the Doors in the game
 ## Written in Singleton Design Pattern accessible by getInstance()
 
-import ../objects/door
+import ../model/door
 import room_factory as roomFac
 
 type door_factory = object

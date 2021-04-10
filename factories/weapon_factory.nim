@@ -1,7 +1,7 @@
 ## This module creates all the Weapons in the game
 ## Written in Singleton Design Pattern accessible by getInstance()
 
-import ../objects/item
+import ../model/item
 
 type weapon_factory = object
   weapons*: seq[Weapon]
